@@ -1,3 +1,7 @@
+import React, { useState } from "react";
+import { useRouter } from "next/router";
+import Head from "next/head";
+
 import styled from "styled-components";
 import db from "../db.json";
 import Widget from "../src/components/Widget";
@@ -24,9 +28,58 @@ export const QuizContainer = styled.div`
   }
 `;
 
+const Input = styled.input`
+  padding: 10px 10px 10px 10px;
+  border: 1px solid ${({ theme }) => theme.colors.contrastText};
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 15px;
+  background-color: ${({ theme }) => theme.colors.mainBg};
+  color: ${({ theme }) => theme.colors.contrastText};
+  &:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+  }
+`;
+
+const Button = styled.button`
+  padding: 10px 10px 10px 10px;
+  border-radius: 5px;
+  border: 0px;
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 15px;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.contrastText};
+  &:hover {
+    background-color: #117bcd;
+  }
+  &:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+  }
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.contrastText};
+    opacity: 0;
+  }
+`;
+
 export default function Home() {
+  const router = useRouter();
+  const [name, setName] = useState("");
+
+  const onHandleSubmit = (e) => {
+    e.preventDefault();
+
+    router.push(`/quiz?name=${name}`);
+  };
+
   return (
     <QuizBackground backgroundImage={db.bg}>
+      <Head>
+        <title>Quiz Ruan Gervasi</title>
+      </Head>
       <QuizContainer>
         <QuizLogo />
         <Widget>
@@ -35,9 +88,18 @@ export default function Home() {
           </Widget.Header>
           <Widget.Content>
             <p>{db.description}</p>
+            <form onSubmit={(e) => onHandleSubmit(e)}>
+              <Input
+                type="text"
+                placeholder="Digite seu nome aqui..."
+                onChange={(e) => setName(e.target.value)}
+              />
+              <Button type="submit" disabled={name === ""}>
+                Jogar como {name}
+              </Button>
+            </form>
           </Widget.Content>
         </Widget>
-
         <Widget>
           <Widget.Content>
             <h1>Quizes da Galera</h1>

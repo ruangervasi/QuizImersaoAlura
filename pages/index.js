@@ -9,7 +9,7 @@ import QuizBackground from "../src/components/QuizBackground";
 import QuizContainer from "../src/components/QuizContainer";
 import Footer from "../src/components/Footer";
 import GitHubCorner from "../src/components/GitHubCorner";
-import Input from "../src/components/input";
+import Input from "../src/components/Input";
 import Button from "../src/components/Button";
 
 // const BackgroundImage = styled.div`

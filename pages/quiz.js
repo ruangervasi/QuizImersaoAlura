@@ -13,7 +13,9 @@ function ResultWidget({ results }) {
       <Widget.Header>Resultado</Widget.Header>
 
       <Widget.Content>
-        <p>{`Você acertou ${results.filter((x) => x).length} questões!`}</p>
+        <p>{`${window.location.name} Você acertou ${
+          results.filter((x) => x).length
+        } questões!`}</p>
         <ul>
           {results.map((item, index) => (
             <li key={index}>

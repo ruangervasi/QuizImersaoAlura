@@ -14,6 +14,7 @@ const AlternativesForm = styled.form`
     }
     &:focus {
       opacity: 1;
+      
     }
   }
   button {

@@ -14,8 +14,11 @@ const AlternativesForm = styled.form`
     }
     &:focus {
       opacity: 1;
-      
+
     }
+
+
+    
   }
   button {
     margin-top: 24px;
